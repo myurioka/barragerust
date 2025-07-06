@@ -359,14 +359,15 @@ impl GameLoop {
 
         // on_animation_frame
 
-        let _time = 0;
-        closure_cloned.replace(Some(Closure::wrap(Box::new(move |_time: i32| {
+        let _time = get_now();
+        //closure_cloned.replace(Some(Closure::wrap(Box::new(move |_time: i32| {
+        closure_cloned.replace(Some(Closure::wrap(Box::new(move |_time| {
             game_loop.accumulated_delta += _time - game_loop.last_frame;
 
             // FPS 1/60
 
-            //while game_loop.accumulated_delta >= FPS {
-            while game_loop.accumulated_delta >= 0 {
+            while game_loop.accumulated_delta >= FPS {
+                //while game_loop.accumulated_delta >= 0 {
                 // update start
                 ref_game_update_clone.borrow_mut().update();
                 // update end
@@ -374,11 +375,8 @@ impl GameLoop {
             }
             game_loop.last_frame = _time;
 
-            // draw start
-            ref_game_draw_clone.borrow_mut().draw();
-            // draw end
-
             ref_game.borrow_mut().on_animation_frame();
+
             request_animation_frame(closure.borrow().as_ref().unwrap());
         }) as Box<dyn FnMut(i32)>)));
 

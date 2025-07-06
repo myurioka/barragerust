@@ -1,0 +1,29 @@
+body {
+    margin: 30, 0, 0, 0;
+    padding: 0;
+    background-color: black;
+}
+canvas {
+    border: 2px solid green;
+    background-color: black;
+}
+canvas:focus {
+    outline: 1px solid green;
+}
+div.flexbox-container {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.game {
+    margin: 10px 30px;
+    align-self: center;
+}
+
+@font-face {
+    font-family: "myfont";
+    src: url("./FFFFORWA.ttf") format("truetype");
+}

@@ -1,0 +1,44 @@
+[package]
+name = "wasm"
+description = "rust wasm mini game"
+version = "0.1.0"
+categories = ["wasm"]
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = { version = "0.2.99", features = ["serde-serialize"]}
+console_error_panic_hook = "0.1.7"
+rand = "0.8.4"
+getrandom = { version = "0.2.3", features = ["js"] }
+futures = "0.3.30"
+wasm-bindgen-futures = "0.4.49"
+serde = {version = "1.0.217", features = ["derive"] }
+anyhow = "1.0.95"
+async-trait = "0.1.84"
+js-sys = "0.3.76"
+
+[dependencies.web-sys]
+version = "0.3.76"
+features = ["console",
+            "Window",
+            "Document",
+            "HtmlCanvasElement",
+            "HtmlInputElement",
+            "CanvasRenderingContext2d",
+            "MouseEvent",
+            "TouchEvent",
+            "TouchList",
+            "Touch",
+            "HtmlElement",
+            "CssStyleDeclaration",
+            "Node",
+            "Performance",
+            ]
+
+# These crates are used for running unit tests.
+#
+[dev-dependencies]
+wasm-bindgen-test = "0.3.28"

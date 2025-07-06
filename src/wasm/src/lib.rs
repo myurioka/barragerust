@@ -360,14 +360,11 @@ impl GameLoop {
         // on_animation_frame
 
         let _time = get_now();
-        //closure_cloned.replace(Some(Closure::wrap(Box::new(move |_time: i32| {
-        closure_cloned.replace(Some(Closure::wrap(Box::new(move |_time| {
-            game_loop.accumulated_delta += _time - game_loop.last_frame;
-
+        closure_cloned.replace(Some(Closure::wrap(Box::new(move |_time: i32| {
             // FPS 1/60
 
-            while game_loop.accumulated_delta >= FPS {
-                //while game_loop.accumulated_delta >= 0 {
+            game_loop.accumulated_delta = _time - game_loop.last_frame;
+            while game_loop.accumulated_delta >= 0 {
                 // update start
                 ref_game_update_clone.borrow_mut().update();
                 // update end
